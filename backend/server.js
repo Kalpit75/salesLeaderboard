@@ -9,9 +9,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("DB Connected"))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGODB_URI, {
+  serverSelectionTimeoutMS: 30000,  
+  socketTimeoutMS: 45000,
+})
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.error("Mongo Error:", err));
 
 app.use("/api", require("./routes/sales"));
 

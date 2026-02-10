@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   serverSelectionTimeoutMS: 30000,  
   socketTimeoutMS: 45000,
 })
@@ -20,6 +20,6 @@ app.use("/api", require("./routes/sales"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log("Server running on port ${PORT}");
+  console.log(`Server running on port ${PORT}`);
 });
 
